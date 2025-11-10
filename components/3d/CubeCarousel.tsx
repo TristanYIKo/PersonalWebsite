@@ -22,15 +22,45 @@ export function CubeCarousel({ images }: CubeCarouselProps) {
   const velocity = useRef(0);
   const autoRotateSpeed = 0.004; // Slow auto-rotation
 
-  // Load textures for each face (with fallback to placeholders)
-  let textures: THREE.Texture[] = [];
-  try {
-    textures = useTexture(images);
-  } catch (error) {
-    console.warn("Textures not loaded, using placeholders");
-  }
+  // Load textures for each face - must be called unconditionally (React hooks rule)
+  const textures = useTexture(images);
 
   const { size } = useThree();
+
+  // Configure textures to cover the entire face (like object-fit: cover)
+  useEffect(() => {
+    if (textures && Array.isArray(textures) && textures.length > 0) {
+      textures.forEach((texture) => {
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.generateMipmaps = false;
+        
+        // Get image dimensions
+        const img = texture.image as HTMLImageElement;
+        if (img && img.width && img.height) {
+          const imageAspect = img.width / img.height;
+          const faceAspect = 1; // Cube faces are square
+          
+          // Calculate scale to cover the entire face (crop excess)
+          if (imageAspect > faceAspect) {
+            // Image is wider than face - fit height, crop width
+            texture.repeat.set(faceAspect / imageAspect, 1);
+          } else {
+            // Image is taller than face - fit width, crop height
+            texture.repeat.set(1, imageAspect / faceAspect);
+          }
+          
+          // Center the texture
+          texture.offset.set(
+            (1 - texture.repeat.x) / 2,
+            (1 - texture.repeat.y) / 2
+          );
+        }
+        
+        texture.needsUpdate = true;
+      });
+    }
+  }, [textures]);
 
   useFrame((state, delta) => {
     if (!meshRef.current) return;
@@ -109,48 +139,49 @@ export function CubeCarousel({ images }: CubeCarouselProps) {
   const materials = [
     // Right face (image 1)
     new THREE.MeshStandardMaterial({ 
-      color: "#f0f0f0",
-      roughness: 0.4,
-      metalness: 0.1,
+      color: "#ffffff",
+      roughness: 0.3,
+      metalness: 0.05,
     }),
     // Left face (image 2)
     new THREE.MeshStandardMaterial({ 
-      color: "#f0f0f0",
-      roughness: 0.4,
-      metalness: 0.1,
+      color: "#ffffff",
+      roughness: 0.3,
+      metalness: 0.05,
     }),
     // Top face
     new THREE.MeshStandardMaterial({ 
-      color: "#e5e5e5",
-      roughness: 0.5,
+      color: "#f5f5f5",
+      roughness: 0.4,
       metalness: 0.05,
     }),
     // Bottom face
     new THREE.MeshStandardMaterial({ 
-      color: "#e5e5e5",
-      roughness: 0.5,
+      color: "#f5f5f5",
+      roughness: 0.4,
       metalness: 0.05,
     }),
     // Front face (image 3)
     new THREE.MeshStandardMaterial({ 
-      color: "#f0f0f0",
-      roughness: 0.4,
-      metalness: 0.1,
+      color: "#ffffff",
+      roughness: 0.3,
+      metalness: 0.05,
     }),
     // Back face (image 4)
     new THREE.MeshStandardMaterial({ 
-      color: "#f0f0f0",
-      roughness: 0.4,
-      metalness: 0.1,
+      color: "#ffffff",
+      roughness: 0.3,
+      metalness: 0.05,
     }),
   ];
 
   // Map textures to materials if available
-  if (textures.length >= 4) {
-    materials[0].map = textures[0]; // Right
-    materials[1].map = textures[1]; // Left
-    materials[4].map = textures[2]; // Front
-    materials[5].map = textures[3]; // Back
+  const textureArray = Array.isArray(textures) ? textures : [textures];
+  if (textureArray.length >= 4) {
+    materials[0].map = textureArray[0]; // Right
+    materials[1].map = textureArray[1]; // Left
+    materials[4].map = textureArray[2]; // Front
+    materials[5].map = textureArray[3]; // Back
   }
 
   return (
@@ -170,10 +201,10 @@ export function CubeCarousel({ images }: CubeCarouselProps) {
       </mesh>
 
       {/* Soft ambient lighting */}
-      <ambientLight intensity={0.85} />
-      <directionalLight position={[5, 5, 5]} intensity={0.3} castShadow={false} />
-      <directionalLight position={[-5, 3, -5]} intensity={0.2} />
-      <pointLight position={[0, -3, 3]} intensity={0.15} color="#f6f6f4" />
+      <ambientLight intensity={1.2} />
+      <directionalLight position={[5, 5, 5]} intensity={0.6} castShadow={false} />
+      <directionalLight position={[-5, 3, -5]} intensity={0.4} />
+      <pointLight position={[0, -3, 3]} intensity={0.3} color="#ffffff" />
     </>
   );
 }

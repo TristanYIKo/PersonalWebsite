@@ -13,10 +13,10 @@ const CubeCarousel3DWrapper = dynamic(
 );
 
 const carouselImages = [
-  "/assets/carousel/image-1.jpg",
-  "/assets/carousel/image-2.jpg",
-  "/assets/carousel/image-3.jpg",
-  "/assets/carousel/image-4.jpg",
+  "/assets/carousel/portfolioPic1.png",
+  "/assets/carousel/portfolioPic2.png",
+  "/assets/carousel/portfolioPic3.png",
+  "/assets/carousel/portfolioPic4.png",
 ];
 
 export function IntroSection() {
