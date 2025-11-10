@@ -1,85 +1,39 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import { Card } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
+
+// Dynamically import cube 3D carousel wrapper to avoid SSR issues
+const CubeCarousel3DWrapper = dynamic(
+  () => import("@/components/3d/CubeCarousel3DWrapper").then((mod) => ({ 
+    default: mod.CubeCarousel3DWrapper 
+  })),
+  { ssr: false, loading: () => <div className="w-full h-full bg-muted/20 rounded-lg animate-pulse" /> }
+);
 
 const carouselImages = [
-  {
-    src: "/assets/carousel/image-1.jpg",
-    alt: "Tristan Ko - Photo 1",
-  },
-  {
-    src: "/assets/carousel/image-2.jpg",
-    alt: "Tristan Ko - Photo 2",
-  },
-  {
-    src: "/assets/carousel/image-3.jpg",
-    alt: "Tristan Ko - Photo 3",
-  },
-  {
-    src: "/assets/carousel/image-4.jpg",
-    alt: "Tristan Ko - Photo 4",
-  },
+  "/assets/carousel/image-1.jpg",
+  "/assets/carousel/image-2.jpg",
+  "/assets/carousel/image-3.jpg",
+  "/assets/carousel/image-4.jpg",
 ];
 
 export function IntroSection() {
-  const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
-  );
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Wait for client-side mounting
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <section id="intro" className="min-h-[85vh] flex items-center justify-center px-6 py-20">
       <div className="max-w-5xl w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image Carousel */}
-          <div className="order-2 md:order-1">
-            <Carousel
-              plugins={[plugin.current]}
-              className="w-full"
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-            >
-              <CarouselContent>
-                {carouselImages.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="overflow-hidden border border-border">
-                      <div className="aspect-square bg-muted flex items-center justify-center">
-                        {/* Placeholder for images */}
-                        <div className="text-center p-8">
-                          <p className="text-muted-foreground text-sm">
-                            Image {index + 1}
-                          </p>
-                          <p className="text-xs text-muted-foreground/60 mt-2">
-                            {image.src}
-                          </p>
-                        </div>
-                      </div>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-2" />
-              <CarouselNext className="right-2" />
-            </Carousel>
-            <div className="flex justify-center gap-2 mt-4">
-              {carouselImages.map((_, index) => (
-                <div
-                  key={index}
-                  className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30"
-                />
-              ))}
-            </div>
+          {/* 3D Cube Carousel */}
+          <div className="order-2 md:order-1 relative h-[450px] md:h-[500px]">
+            {isMounted && <CubeCarousel3DWrapper images={carouselImages} />}
           </div>
 
           {/* Text Content */}
