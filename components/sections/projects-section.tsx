@@ -20,6 +20,7 @@ interface Project {
   image: string;
   tech: string[];
   details: string;
+  detailsLink?: { text: string; url: string }; // Optional inline link in details
   link?: string;
   github?: string;
 }
@@ -27,28 +28,29 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Resonate – Music Rec",
-    description: "AI-powered music recommendation platform with personalized playlists and insights.",
+    description: "AI-powered music recommendation app with personalized insights and playlists.",
     image: "/projects/Resonate1.png",
     tech: ["Next.js", "React", "Tailwind CSS", "Node.js", "PostgreSQL", "Spotify Web API", "Recharts"],
-    details: "Built a music recommendation platform that leverages the Spotify Web API to provide personalized music suggestions. Features include user authentication, playlist creation, listening analytics with interactive charts, and real-time data visualization.",
+    details: "Developed a music recommendation platform using Spotify OAuth and Supabase for secure user data storage. The website analyzes listening history to deliver tailored suggestions, including general recommendations, playlist-based picks, and artist-specific tracks. A dynamic dashboard visualizes listening habits, highlighting peak activity times, favorite artists, songs, and genres.",
+    detailsLink: { text: "(Currently in development mode — to request access, please send your full name and email through the contact section at the bottom of this website.)", url: "#connect" },
     link: "https://resonate-song-rec.vercel.app/",
     github: "https://github.com/TristanYIKo/Resonate-SongRec",
   },
   {
     title: "Factor Five",
-    description: "Financial analytics platform with real-time market data and news integration.",
+    description: "Financial analytics platform with industry-based stock analysis and real-time market insights.",
     image: "/projects/FactorFive.png",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "Finnhub API", "NewsAPI"],
-    details: "Developed a comprehensive financial analytics dashboard that aggregates real-time market data and news. Features interactive charts, stock tracking, market trends analysis, and personalized news feeds for informed investment decisions.",
+    details: "Built a financial analytics platform that evaluates U.S. and select international stocks through industry benchmarking and competitor comparisons. The system analyzes valuation trends, analyst data, and historical performance to generate in-depth company insights. It also includes a live news section that aggregates major and minor market catalysts for real-time awareness.",
     link: "https://factor-five.vercel.app/",
     github: "https://github.com/TristanYIKo/FactorFive",
   },
   {
     title: "Focusly – Study Tracker",
-    description: "Desktop productivity application for tracking study sessions and analyzing learning patterns.",
-    image: "",
+    description: "Desktop productivity app for managing study sessions and visualizing learning progress.",
+    image: "/projects/Focusly.png",
     tech: ["Python", "PySide6", "SQL", "pandas", "matplotlib"],
-    details: "Created a desktop study tracking application with session management, time analytics, and visual progress reports. Includes SQLite database for data persistence, pandas for data analysis, and matplotlib for generating insightful productivity charts.",
+    details: "Built a multi-mode study tracker featuring ad hoc and Pomodoro timers that record study sessions in an SQL database. The app tracks session duration, study frequency, and overall productivity, while matplotlib visualizes study trends over time. It also includes a built-in to-do list for organizing daily tasks and maintaining focus.",
     github: "https://github.com/TristanYIKo/Focusly-StudyTracker",
   },
   {
@@ -69,18 +71,19 @@ const projects: Project[] = [
   },
   {
     title: "Shroud – Python Game",
-    description: "Mystery adventure game with puzzle-solving mechanics and atmospheric storytelling.",
-    image: "",
+    description: "Top-down 2D RPG featuring combat, exploration, and progression systems.",
+    image: "/projects/Shroud.png",
     tech: ["Python", "Pygame"],
-    details: "Created an immersive adventure game using Pygame with custom sprite animations, collision detection, inventory system, and puzzle mechanics. Features include save/load functionality, dynamic soundscapes, and multiple ending paths based on player choices.",
+    details: "Developed a story-driven RPG using Pygame with visual assets from ",
+    detailsLink: { text: "Cute Fantasy RPG", url: "https://kenmi-art.itch.io/cute-fantasy-rpg" },
     github: "https://github.com/TristanYIKo/DungeonCrawlerGamePython",
   },
   {
     title: "Orbit – Retro 2D Game",
-    description: "Space-themed arcade game with custom pixel art and classic gameplay mechanics.",
+    description: "Space-themed infinite runner with custom pixel art and original audio.",
     image: "/projects/Orbit.png",
     tech: ["Java", "AWT", "Swing", "Graphics2D", "ImageIO", "Custom Pixel Art"],
-    details: "Built a retro-style arcade game with hand-crafted pixel art assets and smooth 2D animations. Implemented game physics, collision systems, enemy AI, power-ups, and progressive difficulty scaling. Features custom graphics rendering and sprite management.",
+    details: "Developed a 2D infinite runner using Java with fully custom pixel art and sound design. Players navigate through space, avoiding planets while collecting coins that can be spent on special skins in the in-game shop. The game features collision detection, enemy and obstacle generation, progressive difficulty scaling, and a smooth retro arcade aesthetic.",
     github: "https://github.com/TristanYIKo/Orbit-2DRunner",
   },
 ];
@@ -182,6 +185,33 @@ export function ProjectsSection() {
               <h4 className="font-semibold text-sm text-foreground mb-2">About this project</h4>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {selectedProject?.details}
+                {selectedProject?.detailsLink && (
+                  <>
+                    {selectedProject.title === "Shroud – Python Game" ? (
+                      <>
+                        <a 
+                          href={selectedProject.detailsLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-foreground underline hover:text-foreground/80 transition-colors"
+                        >
+                          {selectedProject.detailsLink.text}
+                        </a>
+                        . Players explore open areas, battle monsters, and progress toward defeating the Shroud, an evil legion that has taken over the lands. The game features HP, stamina, and experience systems, smooth combat mechanics, sprite animations, and map transitions. Currently in active development with plans for new areas, abilities, and storyline expansion.
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        <a 
+                          href={selectedProject.detailsLink.url}
+                          className="italic text-muted-foreground/80 hover:text-muted-foreground transition-colors"
+                        >
+                          {selectedProject.detailsLink.text}
+                        </a>
+                      </>
+                    )}
+                  </>
+                )}
               </p>
             </div>
 
