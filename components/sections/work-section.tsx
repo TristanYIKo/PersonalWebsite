@@ -1,5 +1,8 @@
+"use client";
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -46,7 +49,18 @@ export function WorkSection() {
           <div className="absolute left-0 top-0 bottom-0 w-px bg-border hidden md:block" />
 
           {experiences.map((exp, index) => (
-            <div key={index} className="relative">
+            <motion.div
+              key={index}
+              className="relative"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-80px" }}
+              transition={{
+                duration: 0.35,
+                delay: index * 0.15,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+            >
               {/* Timeline dot */}
               <div className="absolute left-0 top-6 hidden md:block">
                 <div className="h-3 w-3 -ml-[5px] rounded-full bg-foreground border-2 border-background" />
@@ -91,7 +105,7 @@ export function WorkSection() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

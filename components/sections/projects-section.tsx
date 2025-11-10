@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface Project {
   title: string;
@@ -25,38 +26,62 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with real-time inventory management and payment processing.",
-    image: "/assets/projects/ecommerce-platform.jpg",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-    details: "Built a comprehensive e-commerce platform featuring user authentication, product catalog, shopping cart, secure checkout with Stripe integration, and an admin dashboard for inventory management. Implemented real-time stock updates and order tracking.",
-    link: "https://example.com/ecommerce",
-    github: "https://github.com/tristanko/ecommerce",
+    title: "Resonate – Music Rec",
+    description: "AI-powered music recommendation platform with personalized playlists and insights.",
+    image: "/projects/Resonate1.png",
+    tech: ["Next.js", "React", "Tailwind CSS", "Node.js", "PostgreSQL", "Spotify Web API", "Recharts"],
+    details: "Built a music recommendation platform that leverages the Spotify Web API to provide personalized music suggestions. Features include user authentication, playlist creation, listening analytics with interactive charts, and real-time data visualization.",
+    link: "https://resonate-song-rec.vercel.app/",
+    github: "https://github.com/TristanYIKo/Resonate-SongRec",
   },
   {
-    title: "Task Management App",
-    description: "Collaborative task manager with team workspaces, real-time updates, and drag-and-drop interface.",
-    image: "/assets/projects/task-manager.jpg",
-    tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-    details: "Developed a real-time collaborative task management application with WebSocket integration for instant updates. Features include team workspaces, drag-and-drop task organization, deadline tracking, and activity notifications.",
-    link: "https://example.com/taskmanager",
-    github: "https://github.com/tristanko/taskmanager",
+    title: "Factor Five",
+    description: "Financial analytics platform with real-time market data and news integration.",
+    image: "/projects/FactorFive.png",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "Finnhub API", "NewsAPI"],
+    details: "Developed a comprehensive financial analytics dashboard that aggregates real-time market data and news. Features interactive charts, stock tracking, market trends analysis, and personalized news feeds for informed investment decisions.",
+    link: "https://factor-five.vercel.app/",
+    github: "https://github.com/TristanYIKo/FactorFive",
   },
   {
-    title: "Portfolio Generator",
-    description: "AI-powered tool that generates personalized portfolio websites from user data and preferences.",
-    image: "/assets/projects/portfolio-generator.jpg",
-    tech: ["Python", "FastAPI", "OpenAI API", "React"],
-    details: "Created an AI-powered portfolio generator that uses OpenAI's GPT models to create customized portfolio content. Users input their experience and preferences, and the system generates a fully functional website with tailored content and design.",
-    github: "https://github.com/tristanko/portfolio-gen",
+    title: "Focusly – Study Tracker",
+    description: "Desktop productivity application for tracking study sessions and analyzing learning patterns.",
+    image: "",
+    tech: ["Python", "PySide6", "SQL", "pandas", "matplotlib"],
+    details: "Created a desktop study tracking application with session management, time analytics, and visual progress reports. Includes SQLite database for data persistence, pandas for data analysis, and matplotlib for generating insightful productivity charts.",
+    github: "https://github.com/TristanYIKo/Focusly-StudyTracker",
   },
   {
-    title: "Analytics Dashboard",
-    description: "Real-time analytics dashboard with customizable widgets and data visualization tools.",
-    image: "/assets/projects/analytics-dashboard.jpg",
-    tech: ["Vue.js", "D3.js", "Firebase", "Tailwind CSS"],
-    details: "Built an interactive analytics dashboard with real-time data visualization using D3.js. Features customizable widget layouts, multiple chart types, data filtering, and Firebase real-time database integration for live updates.",
-    link: "https://example.com/analytics",
+    title: "Excel Calendar",
+    description: "Automated calendar system with dynamic event management and scheduling features.",
+    image: "/projects/ExcelCalendar.png",
+    tech: ["Excel", "VBA"],
+    details: "Built an interactive Excel-based calendar system using VBA macros for automated date calculations, event scheduling, and recurring task management. Features include color-coded events, monthly/yearly views, and custom reminder system.",
+    github: "https://github.com/TristanYIKo/ExcelCalendar",
+  },
+  {
+    title: "Excel Financial Tracker",
+    description: "Personal finance management tool with budgeting, expense tracking, and forecasting.",
+    image: "/projects/ExcelFinancialTracker.png",
+    tech: ["Excel", "VBA"],
+    details: "Developed a comprehensive financial tracking spreadsheet with automated expense categorization, budget monitoring, and trend analysis. Includes custom VBA functions for transaction importing, data validation, and generating monthly financial reports.",
+    github: "https://github.com/TristanYIKo/FinancialPlanner-Excel",
+  },
+  {
+    title: "Shroud – Python Game",
+    description: "Mystery adventure game with puzzle-solving mechanics and atmospheric storytelling.",
+    image: "",
+    tech: ["Python", "Pygame"],
+    details: "Created an immersive adventure game using Pygame with custom sprite animations, collision detection, inventory system, and puzzle mechanics. Features include save/load functionality, dynamic soundscapes, and multiple ending paths based on player choices.",
+    github: "https://github.com/TristanYIKo/DungeonCrawlerGamePython",
+  },
+  {
+    title: "Orbit – Retro 2D Game",
+    description: "Space-themed arcade game with custom pixel art and classic gameplay mechanics.",
+    image: "/projects/Orbit.png",
+    tech: ["Java", "AWT", "Swing", "Graphics2D", "ImageIO", "Custom Pixel Art"],
+    details: "Built a retro-style arcade game with hand-crafted pixel art assets and smooth 2D animations. Implemented game physics, collision systems, enemy AI, power-ups, and progressive difficulty scaling. Features custom graphics rendering and sprite management.",
+    github: "https://github.com/TristanYIKo/Orbit-2DRunner",
   },
 ];
 
@@ -64,87 +89,109 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="px-6 py-20 bg-muted/30">
+    <section id="projects" className="px-6 py-20 bg-[#f6f6f4]">
       <div className="mx-auto max-w-5xl">
-        <div className="space-y-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-            Projects
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            A selection of recent work and side projects
-          </p>
-        </div>
+        {/* Section Title - Centered */}
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1f1f1f] text-center mb-16">
+          Projects
+        </h2>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        {/* Projects Grid - 2 columns on desktop, 1 on mobile, tight gaps */}
+        <div className="grid gap-4 md:grid-cols-2">
           {projects.map((project, index) => (
-            <Card
+            <motion.div
               key={index}
-              className="cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-foreground/20 overflow-hidden group"
-              onClick={() => setSelectedProject(project)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              className="h-full"
             >
-              {/* Project Image */}
-              <div className="aspect-video relative overflow-hidden bg-muted">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <p className="text-muted-foreground text-sm font-medium">
-                      {project.title}
-                    </p>
-                    <p className="text-xs text-muted-foreground/60 mt-2">
-                      {project.image}
-                    </p>
-                    <p className="text-xs text-muted-foreground/40 mt-4">
-                      Add image here
-                    </p>
+              <div
+                className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 h-full flex flex-col"
+                onClick={() => setSelectedProject(project)}
+              >
+                {/* Project Image */}
+                <div className="aspect-video relative overflow-hidden bg-gray-100">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover rounded-t-xl"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      unoptimized
+                      style={{ objectPosition: 'top left' }}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center p-8">
+                        <p className="text-gray-400 text-sm font-medium">
+                          {project.title}
+                        </p>
+                        <p className="text-xs text-gray-300 mt-2">
+                          Image coming soon
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Project Title */}
+                <div className="px-6 pt-6 pb-3">
+                  <h3 className="text-xl font-semibold text-[#1f1f1f]">
+                    {project.title}
+                  </h3>
+                </div>
+
+                {/* Tech Stack Badges */}
+                <div className="px-6 pb-6 mt-auto">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full border border-gray-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
-
-              <CardHeader className="space-y-3">
-                <CardTitle className="text-xl">{project.title}</CardTitle>
-              </CardHeader>
-
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground/70 border border-border"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Project Details Dialog */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-white border-gray-300">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedProject?.title}</DialogTitle>
-            <DialogDescription className="text-base pt-2">
+            <DialogTitle className="text-2xl text-[#1f1f1f]">{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="text-base pt-2 text-gray-600">
               {selectedProject?.description}
             </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-6 pt-4">
             <div>
-              <h4 className="font-semibold text-sm text-foreground mb-2">About this project</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <h4 className="font-semibold text-sm text-[#1f1f1f] mb-2">About this project</h4>
+              <p className="text-sm text-gray-600 leading-relaxed">
                 {selectedProject?.details}
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm text-foreground mb-3">Technologies</h4>
+              <h4 className="font-semibold text-sm text-[#1f1f1f] mb-3">Technologies</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedProject?.tech.map((tech, i) => (
                   <span
                     key={i}
-                    className="rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-foreground/70 border border-border"
+                    className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full border border-gray-300"
                   >
                     {tech}
                   </span>
@@ -152,34 +199,36 @@ export function ProjectsSection() {
               </div>
             </div>
 
-            <div className="flex gap-3 pt-4">
-              {selectedProject?.link && (
-                <Button asChild variant="default">
-                  <a
-                    href={selectedProject.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    View Live
-                  </a>
-                </Button>
-              )}
-              {selectedProject?.github && (
-                <Button asChild variant="outline">
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <Github className="h-4 w-4" />
-                    View Code
-                  </a>
-                </Button>
-              )}
-            </div>
+            {(selectedProject?.link || selectedProject?.github) && (
+              <div className="flex gap-3 pt-4">
+                {selectedProject?.link && (
+                  <Button asChild variant="default" className="bg-[#1f1f1f] hover:bg-[#2f2f2f] rounded-lg">
+                    <a
+                      href={selectedProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Live Demo
+                    </a>
+                  </Button>
+                )}
+                {selectedProject?.github && (
+                  <Button asChild variant="outline" className="border-gray-300 text-[#1f1f1f] hover:bg-gray-100 rounded-lg">
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <Github className="h-4 w-4" />
+                      GitHub
+                    </a>
+                  </Button>
+                )}
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
