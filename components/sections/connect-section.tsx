@@ -1,4 +1,7 @@
+"use client";
+
 import { Linkedin, Github, Instagram, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 const socialLinks = [
   {
@@ -21,13 +24,47 @@ const socialLinks = [
   },
   {
     name: "Email",
-    href: "mailto:Tristanko1116@gmail.com",
+    href: "mailto:tristanko1116@gmail.com",
     icon: Mail,
     label: "Send an email",
   },
 ];
 
+// Container animation for staggered children
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+// Individual card animation
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 120,
+      damping: 10,
+    },
+  },
+};
+
 export function ConnectSection() {
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.open("mailto:tristanko1116@gmail.com", "_blank", "noreferrer");
+  };
+
   return (
     <section id="connect" className="px-6 py-20">
       <div className="mx-auto max-w-5xl">
@@ -41,26 +78,44 @@ export function ConnectSection() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-4">
+          <motion.div 
+            className="flex flex-wrap items-center justify-center gap-6 pt-4"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-50px" }}
+          >
             {socialLinks.map((link) => {
               const Icon = link.icon;
+              const isEmail = link.name === "Email";
+              
               return (
-                <a
+                <motion.a
                   key={link.name}
                   href={link.href}
-                  target={link.name !== "Email" ? "_blank" : undefined}
-                  rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={isEmail ? handleEmailClick : undefined}
                   aria-label={link.label}
-                  className="group flex flex-col items-center gap-3 p-6 rounded-lg border border-border bg-card hover:bg-muted/50 hover:border-foreground/20 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                  variants={cardVariants}
+                  whileHover={{ 
+                    scale: 1.08,
+                    transition: {
+                      type: "spring",
+                      stiffness: 160,
+                      damping: 12,
+                    }
+                  }}
+                  className="flex flex-col items-center gap-3 p-6 rounded-lg border border-border bg-card hover:bg-muted/50 hover:border-foreground/20 hover:shadow-2xl transition-colors duration-300"
                 >
                   <Icon className="h-8 w-8 text-foreground/60 group-hover:text-foreground transition-colors" />
                   <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">
                     {link.name}
                   </span>
-                </a>
+                </motion.a>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
