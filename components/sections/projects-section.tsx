@@ -89,7 +89,7 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="px-6 py-20 bg-background">
+    <section id="projects" className="px-6 py-20">
       <div className="mx-auto max-w-5xl">
         {/* Section Title - Centered */}
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground text-center mb-16">

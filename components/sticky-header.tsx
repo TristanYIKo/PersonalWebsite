@@ -1,16 +1,38 @@
 "use client";
 
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Linkedin, Github } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function StickyHeader() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    // Check initial scroll position
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header 
+      className={`
+        sticky top-0 z-50 w-full transition-all duration-300 ease-in-out
+        ${isScrolled 
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 shadow-sm" 
+          : "bg-transparent border-b border-transparent"
+        }
+      `}
+    >
       <div className="mx-auto max-w-5xl px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}

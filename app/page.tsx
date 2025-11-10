@@ -5,11 +5,14 @@ import { ConnectSection } from "@/components/sections/connect-section";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <IntroSection />
-      <WorkSection />
-      <ProjectsSection />
-      <ConnectSection />
+    <main className="min-h-screen relative">
+      {/* Global background container with grid - inherited by all sections */}
+      <div className="relative">
+        <IntroSection />
+        <WorkSection />
+        <ProjectsSection />
+        <ConnectSection />
+      </div>
     </main>
   );
 }

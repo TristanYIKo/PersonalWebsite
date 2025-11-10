@@ -28,17 +28,22 @@ export function IntroSection() {
   }, []);
 
   return (
-    <section id="intro" className="min-h-[85vh] flex items-center justify-center px-6 py-20">
+    <section id="intro" className="min-h-[85vh] flex items-center justify-center px-6 py-20 relative">
       <div className="max-w-5xl w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* 3D Cube Carousel */}
+          {/* 3D Cube Carousel with Gradient Halo */}
           <div className="order-2 md:order-1 relative h-[450px] md:h-[500px]">
+            {/* Gradient Halo Background - positioned absolutely behind */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+              <div className="w-[600px] h-[600px] rounded-full bg-gradient-radial from-blue-400/20 via-blue-300/10 to-transparent blur-3xl dark:from-violet-500/25 dark:via-blue-500/15 dark:to-transparent" />
+            </div>
+            {/* Cube Carousel - original positioning maintained */}
             {isMounted && <CubeCarousel3DWrapper images={carouselImages} />}
           </div>
 
           {/* Text Content */}
           <div className="order-1 md:order-2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
               Tristan Ko
             </h1>
             
