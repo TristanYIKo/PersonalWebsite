@@ -89,10 +89,10 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="px-6 py-20 bg-[#f6f6f4]">
+    <section id="projects" className="px-6 py-20 bg-background">
       <div className="mx-auto max-w-5xl">
         {/* Section Title - Centered */}
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1f1f1f] text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground text-center mb-16">
           Projects
         </h2>
 
@@ -112,11 +112,11 @@ export function ProjectsSection() {
               className="h-full"
             >
               <div
-                className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 h-full flex flex-col"
+                className="cursor-pointer bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-border h-full flex flex-col"
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Project Image */}
-                <div className="aspect-video relative overflow-hidden bg-gray-100">
+                <div className="aspect-video relative overflow-hidden bg-muted/20">
                   {project.image ? (
                     <Image
                       src={project.image}
@@ -130,10 +130,10 @@ export function ProjectsSection() {
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center p-8">
-                        <p className="text-gray-400 text-sm font-medium">
+                        <p className="text-muted-foreground text-sm font-medium">
                           {project.title}
                         </p>
-                        <p className="text-xs text-gray-300 mt-2">
+                        <p className="text-xs text-muted-foreground/60 mt-2">
                           Image coming soon
                         </p>
                       </div>
@@ -143,7 +143,7 @@ export function ProjectsSection() {
 
                 {/* Project Title */}
                 <div className="px-6 pt-6 pb-3">
-                  <h3 className="text-xl font-semibold text-[#1f1f1f]">
+                  <h3 className="text-xl font-semibold text-foreground">
                     {project.title}
                   </h3>
                 </div>
@@ -154,7 +154,7 @@ export function ProjectsSection() {
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full border border-gray-300"
+                        className="px-3 py-1.5 text-xs font-medium text-foreground/70 bg-muted/50 rounded-full border border-border"
                       >
                         {tech}
                       </span>
@@ -169,29 +169,29 @@ export function ProjectsSection() {
 
       {/* Project Details Dialog */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-2xl bg-white border-gray-300">
+        <DialogContent className="max-w-2xl bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-2xl text-[#1f1f1f]">{selectedProject?.title}</DialogTitle>
-            <DialogDescription className="text-base pt-2 text-gray-600">
+            <DialogTitle className="text-2xl text-foreground">{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="text-base pt-2 text-muted-foreground">
               {selectedProject?.description}
             </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-6 pt-4">
             <div>
-              <h4 className="font-semibold text-sm text-[#1f1f1f] mb-2">About this project</h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h4 className="font-semibold text-sm text-foreground mb-2">About this project</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {selectedProject?.details}
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm text-[#1f1f1f] mb-3">Technologies</h4>
+              <h4 className="font-semibold text-sm text-foreground mb-3">Technologies</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedProject?.tech.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full border border-gray-300"
+                    className="px-3 py-1.5 text-xs font-medium text-foreground/70 bg-muted/50 rounded-full border border-border"
                   >
                     {tech}
                   </span>
@@ -202,7 +202,7 @@ export function ProjectsSection() {
             {(selectedProject?.link || selectedProject?.github) && (
               <div className="flex gap-3 pt-4">
                 {selectedProject?.link && (
-                  <Button asChild variant="default" className="bg-[#1f1f1f] hover:bg-[#2f2f2f] rounded-lg">
+                  <Button asChild variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg">
                     <a
                       href={selectedProject.link}
                       target="_blank"
@@ -215,7 +215,7 @@ export function ProjectsSection() {
                   </Button>
                 )}
                 {selectedProject?.github && (
-                  <Button asChild variant="outline" className="border-gray-300 text-[#1f1f1f] hover:bg-gray-100 rounded-lg">
+                  <Button asChild variant="outline" className="border-border text-foreground hover:bg-muted/50 rounded-lg">
                     <a
                       href={selectedProject.github}
                       target="_blank"

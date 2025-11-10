@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Linkedin, Github } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function StickyHeader() {
   const scrollToTop = () => {
@@ -20,8 +21,9 @@ export function StickyHeader() {
             Tristan Ko
           </button>
 
-          {/* Social Links */}
+          {/* Theme Toggle and Social Links */}
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <a
               href="https://www.linkedin.com/in/tristan-ko/"
               target="_blank"
