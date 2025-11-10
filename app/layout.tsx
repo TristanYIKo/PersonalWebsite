@@ -3,6 +3,7 @@ import "./globals.css";
 import { StickyHeader } from "@/components/sticky-header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Tristan Ko - Portfolio",
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
