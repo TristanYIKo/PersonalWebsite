@@ -99,8 +99,8 @@ export function ProjectsSection() {
           Projects
         </h2>
 
-        {/* Projects Grid - 2 columns on desktop, 1 on mobile, tight gaps */}
-        <div className="grid gap-4 md:grid-cols-2">
+        {/* Projects Grid - 3 columns on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <motion.div
               key={index}
