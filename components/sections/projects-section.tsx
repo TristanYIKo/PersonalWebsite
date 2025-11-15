@@ -27,6 +27,14 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Toronto Housing Price Predictor",
+    description: "AI-driven housing market forecasting model using macroeconomic data, financial indicators, and machine learning.",
+    image: "/assets/projects/TorontoHousingPricePredictor.png",
+    tech: ["Python", "pandas", "NumPy", "scikit-learn", "XGBoost", "Supabase (Postgres)"],
+    details: "Built a predictive analytics system that forecasts Toronto housing prices using over 5.782 million rows of historical data from Statistics Canada and the Bank of Canada Valet API. A Python ETL pipeline cleaned, merged, and transformed all datasets into a unified Supabase table. Using this data, I trained seven XGBoost regression models (1–36 month horizons) to analyze long-term market trends. The project includes percent-change forecasts, future price predictions, and structured outputs for visualization or further analysis.",
+    github: "https://github.com/TristanYIKo/TorontoHousingPricePredictor",
+  },
+  {
     title: "Resonate – Music Rec",
     description: "AI-powered music recommendation app with personalized insights and playlists.",
     image: "/projects/Resonate1.png",
