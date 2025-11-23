@@ -46,6 +46,14 @@ const projects: Project[] = [
     github: "https://github.com/TristanYIKo/Resonate-SongRec",
   },
   {
+    title: "Focusly – Study Tracker",
+    description: "Desktop productivity app for managing study sessions and visualizing learning progress.",
+    image: "/projects/Focusly.png",
+    tech: ["Python", "PySide6", "SQL", "pandas", "matplotlib"],
+    details: "Built a multi-mode study tracker featuring ad hoc and Pomodoro timers that record study sessions in an SQL database. The app tracks session duration, study frequency, and overall productivity, while matplotlib visualizes study trends over time. It also includes a built-in to-do list for organizing daily tasks and maintaining focus.",
+    github: "https://github.com/TristanYIKo/Focusly-StudyTracker",
+  },
+  {
     title: "Factor Five",
     description: "Financial analytics platform with industry-based stock analysis and real-time market insights.",
     image: "/projects/FactorFive.png",
@@ -53,14 +61,6 @@ const projects: Project[] = [
     details: "Built a financial analytics platform that evaluates U.S. and select international stocks through industry benchmarking and competitor comparisons. The system analyzes valuation trends, analyst data, and historical performance to generate in-depth company insights. It also includes a live news section that aggregates major and minor market catalysts for real-time awareness.",
     link: "https://factor-five.vercel.app/",
     github: "https://github.com/TristanYIKo/FactorFive",
-  },
-  {
-    title: "Focusly – Study Tracker",
-    description: "Desktop productivity app for managing study sessions and visualizing learning progress.",
-    image: "/projects/Focusly.png",
-    tech: ["Python", "PySide6", "SQL", "pandas", "matplotlib"],
-    details: "Built a multi-mode study tracker featuring ad hoc and Pomodoro timers that record study sessions in an SQL database. The app tracks session duration, study frequency, and overall productivity, while matplotlib visualizes study trends over time. It also includes a built-in to-do list for organizing daily tasks and maintaining focus.",
-    github: "https://github.com/TristanYIKo/Focusly-StudyTracker",
   },
   {
     title: "Excel Calendar",
@@ -86,6 +86,15 @@ const projects: Project[] = [
     details: "Developed a story-driven RPG using Pygame with visual assets from ",
     detailsLink: { text: "Cute Fantasy RPG", url: "https://kenmi-art.itch.io/cute-fantasy-rpg" },
     github: "https://github.com/TristanYIKo/DungeonCrawlerGamePython",
+  },
+  {
+    title: "Imposter Game",
+    description: "Interactive multiplayer game built for fast, in-person group play.",
+    image: "/projects/imposterGame.png",
+    tech: [ "React", "Next.js", "CSS", "TypeScript", "Framer Motion"],
+    details: "Developed a mobile-friendly pass & play Imposter game that allows players to enter names, dynamically assign roles, and reveal them one at a time in a controlled flow. Built a responsive UI with custom sliders for player and imposter count, interactive category selection, and a spinning wheel to determine who speaks first. Implemented smooth transitions, clean state handling, and a visual result screen to enhance the in-person gameplay experience.",
+    link: "https://imposter-game-omega.vercel.app/",
+    github: "https://github.com/TristanYIKo/ImposterGame",
   },
   {
     title: "Orbit – Retro 2D Game",
