@@ -36,6 +36,15 @@ const projects: Project[] = [
     github: "https://github.com/TristanYIKo/TorontoHousingPricePredictor",
   },
   {
+    title: "RoastBot",
+    description: "Playful AI resume roaster that turns brutal feedback into friendly, actionable career advice.",
+    image: "/projects/RoastBot.png",
+    tech: ["Next.js", "React", "CSS", "Framer Motion", "Google Gemini API", "pdf-parse", "Mammoth"],
+    details: "After sending out a bunch of applications with no callbacks, I realized my resume needed honest feedback, but I hated asking friends to tear it apart. RoastBot is my solution: an AI resume roaster that lets you upload your resume and get a mix of funny roasts and concrete suggestions, without any awkwardness. Users upload a PDF, DOCX, or TXT file, which is parsed on the server and fed into a custom Google Gemini prompt. The API returns structured JSON that powers three sections: a comedic “Roast,” a grounded “Reality Check,” and a “Quick Fixes” panel with specific edits. The frontend focuses on a playful, character-driven UI while keeping the UX simple enough for students to drop in a resume and instantly see where they can improve.",
+    link: "https://roastbot-three.vercel.app/",
+    github: "https://github.com/TristanYIKo/AIResumeRoaster",
+  },
+  {
     title: "Resonate – Music Rec",
     description: "AI-powered music recommendation app with personalized insights and playlists.",
     image: "/projects/Resonate1.png",
