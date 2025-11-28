@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   title: "Tristan Ko - Portfolio",
   description: "Personal portfolio website showcasing projects and work experience",
   icons: {
-    icon: "/assets/logo.png",
-    shortcut: "/assets/logo.png",
-    apple: "/assets/logo.png",
+    icon: "/assets/Logo.png",
+    shortcut: "/assets/Logo.png",
+    apple: "/assets/Logo.png",
   },
 };
 
@@ -24,9 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/assets/logo.png" />
-        <link rel="apple-touch-icon" href="/assets/logo.png" />
-        <link rel="shortcut icon" href="/assets/logo.png" />
+        <link rel="icon" href="/assets/Logo.png" />
+        <link rel="apple-touch-icon" href="/assets/Logo.png" />
+        <link rel="shortcut icon" href="/assets/Logo.png" />
       </head>
       <body className="antialiased">
         <ThemeProvider
