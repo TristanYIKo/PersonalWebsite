@@ -38,11 +38,11 @@ export function StickyHeader() {
   };
 
   return (
-    <header 
+    <header
       className={`
         sticky top-0 z-50 w-full transition-all duration-300 ease-in-out
-        ${isScrolled 
-          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 shadow-sm" 
+        ${isScrolled
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 shadow-sm"
           : "bg-transparent border-b border-transparent"
         }
       `}
@@ -74,6 +74,14 @@ export function StickyHeader() {
                 {item.label}
               </button>
             ))}
+            <a
+              href="/assets/TristanWebsiteResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-md text-sm font-medium text-foreground/60 hover:text-foreground hover:bg-foreground/5 transition-all duration-200"
+            >
+              Resume
+            </a>
           </nav>
 
           {/* Theme Toggle and Social Links */}
@@ -117,6 +125,14 @@ export function StickyHeader() {
               {item.label}
             </button>
           ))}
+          <a
+            href="/assets/TristanWebsiteResume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded-md text-xs font-medium text-foreground/60 hover:text-foreground hover:bg-foreground/5 transition-all duration-200"
+          >
+            Resume
+          </a>
         </nav>
       </div>
     </header>
