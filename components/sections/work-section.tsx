@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 const experiences = [
   {
     role: "Technical Analyst",
-    company: "Iovate Health Sciences International Inc.",
-    period: "May 2025 – Aug 2025",
-    location: "Oakville, ON",
+    company: "Ontario Ministry of Transportation",
+    period: "Jan 2026 – Apr 2026",
+    location: "Toronto, ON",
     description: "Incoming Technical Analyst for the winter 2026 term.",
     achievements: [
       "Focusing on software analysis, data management, and supporting development/testing of multi-tier web applications",
@@ -17,9 +17,9 @@ const experiences = [
   },
   {
     role: "Supply Chain Intern",
-    company: "Ontario Ministry of Transportation",
-    period: "Jan 2026 – Apr 2026",
-    location: "Toronto, ON",
+    company: "Iovate Health Sciences International Inc.",
+    period: "May 2025 – Aug 2025",
+    location: "Oakville, ON",
     description: "Developing Excel and Python-based tools to streamline supply chain processes and creating a Power BI dashboard to visualize key supply chain metrics for real-time decision-making.",
     achievements: [
       "Built automated Excel and Python tools to enhance operational efficiency and reduce manual workload",
