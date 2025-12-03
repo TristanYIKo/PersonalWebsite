@@ -28,6 +28,15 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Code Ranch",
+    description: "A cowboy-themed typing game where you take down bandits by typing real programming syntax with speed and accuracy.",
+    image: "/projects/CodeRanchPic.png",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Lucide React", "Supabase", "PostgreSQL", "ESLint"],
+    category: "Web Dev",
+    details: "Code Ranch drops you into a dusty frontier where every outlaw has a chip on their shoulder and every duel is settled by quick, steady typing. You ride into town with nothing but your keyboard, facing bandits who test your focus, timing, and nerve as you fire off lines of real code in classic high-noon showdowns. Each victory sharpens your aim and builds your legend across the ranch. The world is expanding too. Future updates will bring multiplayer shootouts, ranked leaderboards, character customization, new “wanted posters” with unique challenges, and a growing frontier of towns and bosses. The goal is to turn coding practice into a full adventure where your skills write the story.",
+    link: "https://code-ranch.vercel.app/",
+  },
+  {
     title: "Toronto Housing Price Predictor",
     description: "AI-driven housing market forecasting model using macroeconomic data, financial indicators, and machine learning.",
     image: "/projects/TorontoHousingPricePredictor.png",
