@@ -8,11 +8,13 @@ const experiences = [
   {
     role: "Technical Analyst",
     company: "Ontario Ministry of Transportation",
-    period: "Jan 2026 – Apr 2026",
+    period: "Jan 2026 – Present",
     location: "Toronto, ON",
-    description: "Incoming Technical Analyst for the winter 2026 term.",
+    description: "Supporting software analysis, data management, and the development and testing of internal, multi-tier applications used across the ministry.",
     achievements: [
-      "Focusing on software analysis, data management, and supporting development/testing of multi-tier web applications",
+      "Contributed to the improvement and redesign of the Fraud Control System, supporting analysis, testing, and system enhancements",
+      "Developing a centralized database to manage and track Alternate Work Arrangement (AWA) requests across the ministry",
+      "Tested and debugged internal applications to identify defects, validate fixes, and support reliable system performance",
     ],
   },
   {
