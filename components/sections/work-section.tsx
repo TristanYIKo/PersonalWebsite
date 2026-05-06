@@ -8,13 +8,13 @@ const experiences = [
   {
     role: "Technical Analyst",
     company: "Ontario Ministry of Transportation",
-    period: "Jan 2026 – Present",
+    period: "Jan 2026 – Apr 2026",
     location: "Toronto, ON",
     description: "Supporting software analysis, data management, and the development and testing of internal, multi-tier applications used across the ministry.",
     achievements: [
-      "Contributed to the improvement and redesign of the Fraud Control System, supporting analysis, testing, and system enhancements",
-      "Developing a centralized database to manage and track Alternate Work Arrangement (AWA) requests across the ministry",
-      "Tested and debugged internal applications to identify defects, validate fixes, and support reliable system performance",
+      "Resolved critical full-stack data bottlenecks within an Angular/Spring Boot/Azure SQL architecture",
+      "Automated complex data migrations with idempotent SQL scripts, ensuring 100% data consistency during production refreshes",
+      "Modernized administrative workflows by developing a centralized SQL Server database to manage Alternate Work Arrangement",
     ],
   },
   {
@@ -99,9 +99,9 @@ export function WorkSection() {
                   <p className="text-muted-foreground">
                     {exp.description}
                   </p>
-                  
+
                   <Separator />
-                  
+
                   <div>
                     <h4 className="text-sm font-semibold text-foreground mb-2">
                       Key Achievements:
