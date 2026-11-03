@@ -169,7 +169,7 @@ export interface Experience {
   tone: Tone;
 }
 
-/** Newest first. Wording follows the resume (public/assets/TristanWebsiteResume.pdf). */
+/** Newest first. Written for the site; it deliberately differs from the resume's wording. */
 export const experiences: Experience[] = [
   {
     id: "allstate",
@@ -179,10 +179,12 @@ export const experiences: Experience[] = [
     period: "Sep 2026 – Dec 2026",
     location: "Markham, ON (Remote)",
     current: true,
+    description:
+      "Focused on optimizing risk-selection strategies and automating recurring performance reporting for the Ontario market.",
     achievements: [
-      "Pinpointed the least profitable segments of the tenant multiline and auto portfolios and used them to shape a new ceding strategy for the risk-sharing pool, independently surfacing an area that became a targeted focus for the business",
-      "Automated monthly data pulls and analysis with Python (Pandas), cutting report prep time by 85% and keeping 12+ recurring reports accurate and on schedule for stakeholders",
-      "Supported the team’s migration from SAS to Microsoft Fabric while maintaining Power BI dashboards that give product managers a clear view of provincial performance",
+      "Analyzed historical claims data to spot underperforming customer segments, helping senior leaders shape a safer, more profitable pricing strategy for Ontario.",
+      "Automated 12+ recurring performance reports using Python, cutting monthly report preparation time by 85%.",
+      "Modernized team reporting by transitioning workflows and Power BI dashboards from legacy software to Microsoft Fabric for automatic data updates.",
     ],
     tone: "sky",
   },
@@ -194,11 +196,11 @@ export const experiences: Experience[] = [
     period: "Jan 2026 – Apr 2026",
     location: "Toronto, ON",
     description:
-      "Supported software analysis, data management, and the development and testing of internal, multi-tier applications used across the ministry.",
+      "Handled software troubleshooting across internal web applications and built centralized databases to streamline internal tracking.",
     achievements: [
-      "Diagnosed and resolved critical data-flow issues between an Angular frontend, a Spring Boot API, and an Azure SQL database by tracing application caching logic and correcting database lifecycle timelines",
-      "Engineered idempotent SQL migration scripts to refactor multi-row operations, successfully managing Unique Index constraints during production-level data refreshes to ensure 100% data consistency",
-      "Developed a centralized SQL Server database to manage Alternate Work Arrangement (AWA) tracking, migrating the ministry from manual spreadsheets to a scalable, organized data repository",
+      "Resolved complex data-flow and communication issues between the website frontend, backend server, and database to keep internal applications running smoothly.",
+      "Wrote precise database migration scripts to securely update large sets of records without data loss or system errors.",
+      "Built a centralized database system to track employee work arrangements, replacing scattered spreadsheets with a single, organized platform.",
     ],
     tone: "mint",
   },
@@ -210,12 +212,11 @@ export const experiences: Experience[] = [
     period: "May 2025 – Aug 2025",
     location: "Oakville, ON",
     description:
-      "Developed Excel and Python-based tools to streamline supply chain processes and created a Power BI dashboard to visualize key supply chain metrics for real-time decision-making.",
+      "Streamlined supply chain operations by building automated inventory tools, data pipelines, and performance dashboards.",
     achievements: [
-      "Developed an Excel buying tool to calculate reorder timing and quantities across 800+ active SKUs, aligning purchases with Days of Supply targets to reduce manual planning and decision time by 90%+",
-      "Built a Python script with Pandas to automate ERP uploads, eliminating manual entry and data entry errors",
-      "Designed a Power BI dashboard centralizing key supply metrics, cutting report search time and improving visibility for the planning team",
-      "Analyzed warehouse deviation data using Excel to identify systemic issues, reducing fulfillment errors by 35%",
+      "Created an automated Excel inventory tool for over 800 products to calculate exact reorder quantities and schedules, cutting manual planning time by over 90%.",
+      "Built Python scripts to automatically upload and sync supply chain data, completely eliminating manual entry mistakes.",
+      "Designed clear Power BI dashboards for team-wide metrics and analyzed warehouse shipping errors to reduce fulfillment mistakes by 35%.",
     ],
     tone: "amber",
   },
