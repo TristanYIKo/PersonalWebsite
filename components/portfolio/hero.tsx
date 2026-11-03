@@ -24,7 +24,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-12 px-4 pb-16 pt-6 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8"
+      className="snap-screen mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-12 px-4 pb-16 pt-6 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8"
     >
       <div className="space-y-6">
         <IntroItem

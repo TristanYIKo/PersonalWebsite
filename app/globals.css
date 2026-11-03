@@ -372,6 +372,30 @@
   }
 }
 
+/*
+ * Section snapping, on large screens only. Each section is one full screen (below the nav)
+ * and the page eases onto the nearest one when you stop scrolling, so only one section is on
+ * screen at rest. (`proximity` was tried first: it leaves a dead zone around the middle where
+ * two sections stay on screen.) Browsers let the scroll rest anywhere inside a snap area taller
+ * than the screen, so the long Projects section still scrolls freely. On small screens the
+ * sections can't fit one screen, so the page just scrolls normally.
+ * `scroll-padding-top` (set above) keeps each section's top just under the sticky nav.
+ */
+@media (min-width: 1024px) and (min-height: 640px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+  .snap-screen {
+    min-height: calc(100svh - 4rem);
+    scroll-snap-align: start;
+  }
+  .snap-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

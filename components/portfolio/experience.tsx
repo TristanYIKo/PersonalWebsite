@@ -36,7 +36,11 @@ export function Experience() {
   };
 
   return (
-    <section ref={sectionRef} id="experience" className="mx-auto max-w-6xl px-4 py-24 sm:px-8">
+    <section
+      ref={sectionRef}
+      id="experience"
+      className="snap-screen snap-center mx-auto max-w-6xl px-4 py-24 sm:px-8"
+    >
       <div className="grid gap-14 lg:grid-cols-[0.8fr_1.6fr] lg:gap-20">
         {/* The whole left side drops in from the top, and leaves to the right. */}
         <ScrollFx target={sectionRef} from="top" distance={120} className="space-y-6">

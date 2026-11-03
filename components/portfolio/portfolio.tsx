@@ -16,9 +16,13 @@ export function Portfolio({ year }: { year: number }) {
         <Hero />
         <Experience />
         <Projects />
-        <Connect />
+        {/* Connect and the footer are the last snap screen together. Snapping to Connect alone
+            would hide the footer and keep pulling you back off the bottom of the page. */}
+        <div className="snap-screen flex flex-col">
+          <Connect />
+          <SiteFooter year={year} />
+        </div>
       </main>
-      <SiteFooter year={year} />
     </IntroProvider>
   );
 }
