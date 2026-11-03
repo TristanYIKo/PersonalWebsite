@@ -4,42 +4,29 @@ import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+export function ThemeToggle({ className }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
-  // useEffect only runs on the client, so now we can safely show the UI
+  // The theme is only known on the client, so render a neutral button until mounted.
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-9 w-9"
-        disabled
-      >
-        <Sun className="h-5 w-5" />
-      </Button>
-    );
-  }
+  const dark = mounted && resolvedTheme === "dark";
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="h-9 w-9 text-foreground/60 hover:text-foreground transition-colors"
-      aria-label="Toggle theme"
+      disabled={!mounted}
+      onClick={() => setTheme(dark ? "light" : "dark")}
+      className={cn("h-9 w-9 rounded-full transition-colors", className)}
+      aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
     >
-      {theme === "light" ? (
-        <Moon className="h-5 w-5" />
-      ) : (
-        <Sun className="h-5 w-5" />
-      )}
+      {dark ? <Sun aria-hidden className="h-5 w-5" /> : <Moon aria-hidden className="h-5 w-5" />}
     </Button>
   );
 }
