@@ -1,5 +1,3 @@
-export const RESUME_HREF = "/assets/TristanWebsiteResume.pdf";
-
 /** In page order. `top` is the hero and has no nav link of its own. */
 export const SECTION_IDS = ["top", "experience", "projects", "connect"] as const;
 export type SectionId = (typeof SECTION_IDS)[number];

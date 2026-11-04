@@ -130,7 +130,7 @@ export function Projects() {
   const countFor = (f: Filter) => (f === "All" ? projects.length : projects.filter((p) => p.category === f).length);
 
   return (
-    <section id="projects" className="snap-screen mx-auto max-w-6xl px-4 py-24 sm:px-8">
+    <section id="projects" className="mx-auto max-w-6xl px-4 py-24 sm:px-8">
       <div ref={headerRef} className="flex flex-col justify-between gap-10 sm:flex-row sm:items-end">
         {/* Drops in from the top and leaves to the right, like the Experience title. */}
         <ScrollFx target={headerRef} from="top" distance={70} className="space-y-6">

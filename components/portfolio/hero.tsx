@@ -3,7 +3,6 @@
 import { ArrowRight } from "lucide-react";
 import { IntroItem } from "@/components/motion/intro-item";
 import { Pile } from "@/components/motion/pile";
-import { RESUME_HREF } from "@/lib/sections";
 import { heroPile } from "./piles";
 
 /**
@@ -24,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="snap-screen mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-12 px-4 pb-16 pt-6 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8"
+      className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-12 px-4 pb-16 pt-6 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8"
     >
       <div className="space-y-6">
         <IntroItem
@@ -62,14 +61,6 @@ export function Hero() {
               aria-hidden
               className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
             />
-          </a>
-          <a
-            href={RESUME_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bubbly inline-flex items-center rounded-full border border-foreground/30 px-6 py-3 text-sm font-semibold hover:bg-foreground/5"
-          >
-            Resume
           </a>
         </IntroItem>
       </div>

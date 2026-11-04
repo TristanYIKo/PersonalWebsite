@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { NAV_LINKS, RESUME_HREF } from "@/lib/sections";
+import { NAV_LINKS } from "@/lib/sections";
 import { cn } from "@/lib/utils";
 import { useActiveSection } from "./use-active-section";
 
@@ -90,14 +90,6 @@ export function SiteNav() {
               </a>
             );
           })}
-          <a
-            href={RESUME_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bubbly ml-2 hidden rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background hover:opacity-90 sm:inline-flex"
-          >
-            Resume
-          </a>
           <ThemeToggle className="ml-1 text-foreground/70 hover:bg-foreground/10 hover:text-foreground" />
         </div>
       </nav>

@@ -21,12 +21,7 @@ export function Connect() {
   const inView = useInView(listRef, { once: true, margin: "0px 0px -10% 0px" });
 
   return (
-    // Fills the space above the footer and centres its content, so Connect and the footer together are one screen.
-    <section
-      ref={sectionRef}
-      id="connect"
-      className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-12 sm:px-8"
-    >
+    <section ref={sectionRef} id="connect" className="mx-auto max-w-6xl px-4 py-24 sm:px-8">
       <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
         {/* Same choreography as Experience: the left side drops in, the list slides in from the right. */}
         <ScrollFx target={sectionRef} from="top" distance={100} className="space-y-6">
