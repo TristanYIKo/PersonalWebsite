@@ -160,6 +160,8 @@ export interface Experience {
   company: string;
   /** Short company name for the index. */
   indexLabel: string;
+  /** Company logo, shown on the role's block. Square, in /public/assets/logos. */
+  logo: string;
   period: string;
   location: string;
   /** Marks the role you are in right now. */
@@ -176,6 +178,7 @@ export const experiences: Experience[] = [
     role: "Provincial Product Analyst",
     company: "Allstate Insurance Company of Canada",
     indexLabel: "Allstate",
+    logo: "/assets/logos/allstate.png",
     period: "Sep 2026 – Dec 2026",
     location: "Markham, ON (Remote)",
     current: true,
@@ -193,6 +196,7 @@ export const experiences: Experience[] = [
     role: "Junior Technical Analyst",
     company: "Ontario Ministry of Transportation",
     indexLabel: "Ministry of Transportation",
+    logo: "/assets/logos/mto.png",
     period: "Jan 2026 – Apr 2026",
     location: "Toronto, ON",
     description:
@@ -209,6 +213,7 @@ export const experiences: Experience[] = [
     role: "Supply Chain Intern",
     company: "Iovate Health Sciences International Inc.",
     indexLabel: "Iovate",
+    logo: "/assets/logos/iovate.png",
     period: "May 2025 – Aug 2025",
     location: "Oakville, ON",
     description:

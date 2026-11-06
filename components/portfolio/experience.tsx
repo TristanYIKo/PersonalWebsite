@@ -4,8 +4,9 @@ import { useRef, useState, type KeyboardEvent } from "react";
 import { FadeOnScroll } from "@/components/motion/fade-on-scroll";
 import { ScrollFx } from "@/components/motion/scroll-fx";
 import { experiences } from "@/lib/data";
-import { boxShadow, toneClass } from "@/lib/tones";
+import { toneClass } from "@/lib/tones";
 import { cn } from "@/lib/utils";
+import { LogoBlock } from "./logo-block";
 
 /** Opens on the role you are in right now, falling back to the newest. */
 const DEFAULT_ROLE = (experiences.find((e) => e.current) ?? experiences[0]).id;
@@ -50,7 +51,7 @@ export function Experience() {
             Roles across product analytics, software, and supply chain.
           </FadeOnScroll>
 
-          {/* One cube per role. Pressing one swaps the panel beside it. */}
+          {/* One block per role, each showing its company's logo. Pressing one swaps the panel beside it. */}
           <FadeOnScroll>
           <div
             role="tablist"
@@ -76,13 +77,11 @@ export function Experience() {
                   onKeyDown={(event) => onKeyDown(event, i)}
                   className="group flex flex-col items-start gap-3 rounded-xl py-2 text-left text-foreground/45 transition-colors duration-500 hover:text-foreground data-[active=true]:text-foreground lg:flex-row lg:items-center lg:gap-4 lg:py-3"
                 >
-                  <span
-                    aria-hidden
+                  <LogoBlock
+                    logo={exp.logo}
                     className={cn(
-                      "h-12 w-12 shrink-0 scale-75 rounded-lg opacity-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none lg:h-11 lg:w-11",
+                      "h-12 w-12 scale-75 opacity-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none lg:h-11 lg:w-11",
                       "group-hover:opacity-100 group-data-[active=true]:-translate-y-1 group-data-[active=true]:scale-110 group-data-[active=true]:opacity-100",
-                      boxShadow,
-                      toneClass[exp.tone],
                     )}
                   />
                   <span className="min-w-0">
@@ -116,10 +115,7 @@ export function Experience() {
                 className="role-panel col-start-1 row-start-1 min-w-0 space-y-4"
               >
                 <FadeOnScroll className="flex items-start gap-5">
-                  <div
-                    aria-hidden
-                    className={cn("role-cube mt-1 h-12 w-12 shrink-0 rounded-lg sm:h-14 sm:w-14", boxShadow, toneClass[exp.tone])}
-                  />
+                  <LogoBlock logo={exp.logo} className="role-cube mt-1 h-12 w-12 sm:h-14 sm:w-14" />
                   <div className="min-w-0 space-y-1.5">
                     <h3 className="font-display text-3xl font-bold leading-tight md:text-4xl">{exp.role}</h3>
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
