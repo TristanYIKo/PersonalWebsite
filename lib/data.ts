@@ -183,8 +183,8 @@ export const experiences: Experience[] = [
       "Focused on risk-selection strategy for the Ontario market, alongside the team's recurring performance reporting.",
     achievements: [
       "Analyzed historical claims data to spot underperforming customer segments, helping senior leaders shape a safer, more profitable pricing strategy for Ontario.",
-      "Helped keep the team's recurring performance reports accurate and on schedule for product managers and other stakeholders.",
-      "Supported the team's move from legacy software to Microsoft Fabric while helping maintain the Power BI dashboards that give product managers a view of provincial performance.",
+      "Contributed to the team's recurring performance reports, assisting in data compilation and quality checks for stakeholders.",
+      "Modernized team reporting by transitioning workflows and Power BI dashboards from legacy software to Microsoft Fabric for automatic data updates.",
     ],
     tone: "sky",
   },
