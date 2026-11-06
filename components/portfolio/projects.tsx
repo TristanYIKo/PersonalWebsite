@@ -19,6 +19,27 @@ const filters: readonly Filter[] = ["All", ...categories];
 /** Longest a card waits for its screenshot before revealing anyway. */
 const IMAGE_WAIT_MS = 2500;
 
+/** Each card in a row reveals this much after the one to its left. */
+const COLUMN_STAGGER_S = 0.1;
+
+/** Columns the grid has at the current width. Mirrors `sm:grid-cols-2 lg:grid-cols-3` below. */
+function useColumns() {
+  const [columns, setColumns] = useState(3);
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const medium = window.matchMedia("(min-width: 640px)");
+    const update = () => setColumns(wide.matches ? 3 : medium.matches ? 2 : 1);
+    update();
+    wide.addEventListener("change", update);
+    medium.addEventListener("change", update);
+    return () => {
+      wide.removeEventListener("change", update);
+      medium.removeEventListener("change", update);
+    };
+  }, []);
+  return columns;
+}
+
 function techSummary(tech: string[]) {
   const shown = tech.slice(0, 4).join(" · ");
   return tech.length > 4 ? `${shown} +${tech.length - 4}` : shown;
@@ -27,11 +48,14 @@ function techSummary(tech: string[]) {
 function ProjectCard({
   project,
   index,
+  columns,
   seen,
   onOpen,
 }: {
   project: Project;
   index: number;
+  /** Cards per row right now, so a row reveals left to right whatever the screen width. */
+  columns: number;
   /** Titles that have already played their reveal; re-mounted cards (after a filter) skip it. */
   seen: Set<string>;
   onOpen: () => void;
@@ -75,45 +99,50 @@ function ProjectCard({
       onPointerEnter={hoverIn}
       onPointerLeave={hoverOut}
       style={{ "--glow": toneGlow[tone] } as CSSProperties}
-      className="project-card group relative flex flex-col gap-5"
+      className="project-card group relative"
     >
-      <div className="rise relative" style={{ "--delay": `${(index % 3) * 0.09}s` } as CSSProperties}>
-        <div className="jelly-x">
-          <div className={cn("jelly-y rounded-lg p-2", boxShadow, toneClass[tone])}>
-            <div className="jelly-inner relative aspect-video overflow-hidden rounded-md bg-black/10">
-              <div className="curtain-img absolute inset-0">
-                <Image
-                  src={project.image}
-                  alt=""
-                  fill
-                  onLoad={() => setImageReady(true)}
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none"
-                />
+      {/* The card's visible content. It scales (not the article), so the hover target never moves. */}
+      <div className="card-body flex flex-col gap-5">
+        <div
+          className="rise relative"
+          style={{ "--delay": `${(index % columns) * COLUMN_STAGGER_S}s` } as CSSProperties}
+        >
+          <div className="jelly-x">
+            <div className={cn("jelly-y rounded-lg p-2", boxShadow, toneClass[tone])}>
+              <div className="jelly-inner relative aspect-video overflow-hidden rounded-md bg-black/10">
+                <div className="curtain-img absolute inset-0">
+                  <Image
+                    src={project.image}
+                    alt=""
+                    fill
+                    onLoad={() => setImageReady(true)}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none"
+                  />
+                </div>
+                {/* Covers the screenshot, then wipes upward to uncover it. */}
+                <div aria-hidden className={cn("curtain absolute inset-0", toneClass[tone])} />
               </div>
-              {/* Covers the screenshot, then wipes upward to uncover it. */}
-              <div aria-hidden className={cn("curtain absolute inset-0", toneClass[tone])} />
-              <div aria-hidden className="gloss pointer-events-none absolute inset-0" />
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="space-y-2">
-        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-          <span aria-hidden className={cn("h-2.5 w-2.5 rounded-[3px]", toneClass[tone])} />
-          {project.category}
-        </p>
-        <h3 className="font-display text-2xl font-bold leading-tight">
-          {/* Stretched button: the whole card opens the details. */}
-          <button type="button" onClick={onOpen} className="text-left after:absolute after:inset-0">
-            {project.title}
-          </button>
-        </h3>
-        <p className="line-clamp-3 text-[0.95rem] leading-relaxed text-muted-foreground">
-          {project.description}
-        </p>
-        <p className="text-xs text-muted-foreground/80">{techSummary(project.tech)}</p>
+        <div className="space-y-2">
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            <span aria-hidden className={cn("h-2.5 w-2.5 rounded-[3px]", toneClass[tone])} />
+            {project.category}
+          </p>
+          <h3 className="font-display text-2xl font-bold leading-tight">
+            {/* Stretched button: the whole card opens the details. */}
+            <button type="button" onClick={onOpen} className="text-left after:absolute after:inset-0">
+              {project.title}
+            </button>
+          </h3>
+          <p className="line-clamp-3 text-[0.95rem] leading-relaxed text-muted-foreground">
+            {project.description}
+          </p>
+          <p className="text-xs text-muted-foreground/80">{techSummary(project.tech)}</p>
+        </div>
       </div>
     </motion.article>
   );
@@ -125,6 +154,7 @@ export function Projects() {
   const [open, setOpen] = useState(false);
   const seenRef = useRef(new Set<string>());
   const headerRef = useRef<HTMLDivElement>(null);
+  const columns = useColumns();
 
   const visible = filter === "All" ? projects : projects.filter((p) => p.category === filter);
   const countFor = (f: Filter) => (f === "All" ? projects.length : projects.filter((p) => p.category === f).length);
@@ -165,13 +195,14 @@ export function Projects() {
         </div>
       </Reveal>
 
-      <div className="relative mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="project-grid relative mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {visible.map((project, i) => (
             <ProjectCard
               key={project.title}
               project={project}
               index={i}
+              columns={columns}
               seen={seenRef.current}
               onOpen={() => {
                 setActive(project);
