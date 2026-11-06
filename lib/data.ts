@@ -180,11 +180,11 @@ export const experiences: Experience[] = [
     location: "Markham, ON (Remote)",
     current: true,
     description:
-      "Focused on optimizing risk-selection strategies and automating recurring performance reporting for the Ontario market.",
+      "Focused on risk-selection strategy for the Ontario market, alongside the team's recurring performance reporting.",
     achievements: [
       "Analyzed historical claims data to spot underperforming customer segments, helping senior leaders shape a safer, more profitable pricing strategy for Ontario.",
-      "Automated 12+ recurring performance reports using Python, cutting monthly report preparation time by 85%.",
-      "Modernized team reporting by transitioning workflows and Power BI dashboards from legacy software to Microsoft Fabric for automatic data updates.",
+      "Helped keep the team's recurring performance reports accurate and on schedule for product managers and other stakeholders.",
+      "Supported the team's move from legacy software to Microsoft Fabric while helping maintain the Power BI dashboards that give product managers a view of provincial performance.",
     ],
     tone: "sky",
   },
