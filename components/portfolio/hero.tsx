@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { IntroItem } from "@/components/motion/intro-item";
 import { Pile } from "@/components/motion/pile";
+import { ScrollExit } from "@/components/motion/scroll-fx";
 import { heroPile } from "./piles";
 
 /**
@@ -11,6 +13,8 @@ import { heroPile } from "./piles";
  *   the paragraph slides in from the left;
  *   a deliberate pause, so the buttons land with some emphasis;
  *   the buttons fade in.
+ * That opening plays once, when the page opens. Scrolling never replays it; the whole hero only
+ * drifts away and fades as you scroll past it, and comes back as you scroll up (`ScrollExit`).
  */
 const AT = {
   eyebrow: 0.8,
@@ -20,12 +24,15 @@ const AT = {
 };
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-12 px-4 pb-16 pt-6 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8"
     >
-      <div className="space-y-6">
+      <ScrollExit target={sectionRef} to="right" distance={90} className="space-y-6">
         <IntroItem
           as="p"
           effect="drop"
@@ -63,12 +70,14 @@ export function Hero() {
             />
           </a>
         </IntroItem>
-      </div>
+      </ScrollExit>
 
-      <Pile
-        boxes={heroPile}
-        className="mx-auto grid aspect-[6/7] w-full max-w-[26rem] grid-cols-6 grid-rows-7 gap-1 lg:max-w-none"
-      />
+      <ScrollExit target={sectionRef} to="right" distance={130}>
+        <Pile
+          boxes={heroPile}
+          className="mx-auto grid aspect-[6/7] w-full max-w-[26rem] grid-cols-6 grid-rows-7 gap-1 lg:max-w-none"
+        />
+      </ScrollExit>
     </section>
   );
 }

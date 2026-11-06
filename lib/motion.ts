@@ -92,13 +92,14 @@ export function bounceToFrames(kf: ReturnType<typeof bounceKeyframes>): Keyframe
  * follows a plain ease, so the fade stays clean and only the movement is bubbly.
  */
 export const revealVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  // Leaving the screen sends it back here, so it needs its own (quicker) way out.
+  hidden: { opacity: 0, y: 28, transition: { duration: 0.5, ease: easeOutExpo } },
   show: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
-      opacity: { duration: 0.6, ease: easeOutExpo, delay },
-      y: { type: "spring", stiffness: 150, damping: 15, mass: 0.9, delay },
+      opacity: { duration: 0.8, ease: easeOutExpo, delay },
+      y: { type: "spring", stiffness: 115, damping: 15, mass: 0.9, delay },
     },
   }),
 };

@@ -13,7 +13,7 @@ const tags = {
   span: motion.span,
 } as const;
 
-/** Content that rises with a soft spring and fades in once, as it scrolls into view. */
+/** Content that rises with a soft spring as it scrolls into view, and settles back out of view when it leaves, so it plays again each time. */
 export function Reveal({
   as = "div",
   delay = 0,
@@ -32,7 +32,7 @@ export function Reveal({
       variants={revealVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+      viewport={{ once: false, margin: "-60px 0px -12% 0px" }}
       custom={delay}
       className={className}
     >

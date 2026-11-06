@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -6,10 +7,11 @@ import { cn } from "@/lib/utils";
  * top of it, so it still reads as one of the site's blocks. Decorative: the company name is
  * always printed beside it.
  */
-export function LogoBlock({ logo, className }: { logo: string; className?: string }) {
+export function LogoBlock({ logo, className, style }: { logo: string; className?: string; style?: CSSProperties }) {
   return (
     <span
       aria-hidden
+      style={style}
       className={cn(
         "relative block shrink-0 overflow-hidden rounded-lg bg-white shadow-[0_12px_20px_-10px_rgba(0,0,0,0.45)]",
         className,

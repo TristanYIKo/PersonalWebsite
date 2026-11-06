@@ -9,7 +9,7 @@ export interface PileBox {
   tone: Tone;
   /** Grid placement and size, e.g. "col-[1/5] row-[6/8]". */
   className: string;
-  /** Seconds at which this box first hits (DropBox) or starts growing (GrowPile). Order bottom-first. */
+  /** Seconds at which this box first hits (DropBox) or falls onto the stack (StackPile). Order bottom-first. */
   land: number;
   tilt?: number;
   boxClassName?: string;
